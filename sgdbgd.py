@@ -52,23 +52,31 @@ def featureNormalize(X):
 
 allData = pd.read_csv('Advertising.csv')
 m, n = np.shape(allData)
-print(m)
-print(n)
+#print(m)
+#print(n)
 ratio = 0.7
 X = allData.values[:, :-1].reshape((-1, 3))
 labels = allData.values[:, -1].reshape((-1, 1))
 
 x, mu, sigma = featureNormalize(X)
-
+np.savetxt("newAdvertising.csv", x, delimiter=',')
 m,n = np.shape(x)
-print(m)
-print(n)
+#print(m)
+#print(n)
 theta = np.ones(n+1).reshape(n+1,1)
 alpha = 0.01
 maxIteration = 10000
 
 theta_BGD = BGD(x, labels, theta, alpha, maxIteration)
-print(theta_BGD)
+print("Result of BGD")
+print("theta0=",theta_BGD[0])
+print("theta1=",theta_BGD[1])
+print("theta2=",theta_BGD[2])
+print("theta3=",theta_BGD[3])
 print("==============================================")
 theta_SGD = SGD(x, labels, theta, alpha, maxIteration)
-print(theta_SGD)
+print("Result of SGD")
+print("theta0=",theta_SGD[0])
+print("theta1=",theta_SGD[1])
+print("theta2=",theta_SGD[2])
+print("theta3=",theta_SGD[3])
